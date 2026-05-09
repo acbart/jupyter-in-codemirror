@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jupyter in CodeMirror</title>
+    <style>
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: #f5f5f5;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: #333;
+      }
+
+      header {
+        background: #4a90d9;
+        color: white;
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+      }
+
+      header .logo {
+        font-size: 22px;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      header .subtitle {
+        font-size: 13px;
+        opacity: 0.85;
+        margin-left: auto;
+      }
+
+      .toolbar {
+        background: #fff;
+        border-bottom: 1px solid #ddd;
+        padding: 8px 24px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .toolbar button {
+        background: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 5px 12px;
+        font-size: 13px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: background 0.15s;
+      }
+
+      .toolbar button:hover {
+        background: #e0e0e0;
+      }
+
+      .toolbar .separator {
+        width: 1px;
+        height: 24px;
+        background: #ddd;
+        margin: 0 4px;
+      }
+
+      .toolbar .info {
+        font-size: 12px;
+        color: #777;
+        margin-left: auto;
+      }
+
+      .editor-wrapper {
+        max-width: 960px;
+        margin: 24px auto;
+        padding: 0 16px;
+      }
+
+      #editor {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      }
+
+      /* CodeMirror overrides */
+      .cm-editor {
+        font-size: 14px;
+      }
+
+      .cm-editor.cm-focused {
+        outline: none;
+      }
+
+      .cm-scroller {
+        font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", "Consolas", monospace;
+      }
+
+      /* Notebook cell styling */
+      .cm-notebook-image {
+        display: block;
+        max-width: 100%;
+        margin: 8px 0;
+        border-radius: 4px;
+        border: 1px solid #eee;
+      }
+
+      .cm-cell-separator {
+        display: block;
+        height: 2px;
+        background: linear-gradient(90deg, #4a90d9 0%, #c084fc 100%);
+        margin: 2px 0;
+        border-radius: 1px;
+        opacity: 0.5;
+      }
+
+      footer {
+        text-align: center;
+        padding: 32px 16px;
+        font-size: 12px;
+        color: #999;
+      }
+
+      footer a {
+        color: #4a90d9;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <span class="logo">📓</span>
+      <h1>Jupyter in CodeMirror</h1>
+      <span class="subtitle">Mixed-language parsing demo</span>
+    </header>
+
+    <div class="toolbar">
+      <button id="btn-add-python">➕ Python Cell</button>
+      <button id="btn-add-markdown">➕ Markdown Cell</button>
+      <button id="btn-add-image">🖼️ Image Cell</button>
+      <div class="separator"></div>
+      <button id="btn-reset">↺ Reset</button>
+      <span class="info">
+        📝 Markdown &amp; 🐍 Python mixed-language highlighting via CodeMirror 6
+      </span>
+    </div>
+
+    <div class="editor-wrapper">
+      <div id="editor"></div>
+    </div>
+
+    <footer>
+      Built with <a href="https://codemirror.net/">CodeMirror 6</a> mixed-language parsing.
+      Source on <a href="https://github.com/acbart/jupyter-in-codemirror">GitHub</a>.
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
